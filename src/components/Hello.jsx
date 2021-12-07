@@ -16,7 +16,7 @@ function Hello(props) {
 Hello.propTypes = {
   children: string.isRequired,
   bang: bool,
-  style: shape(),
+  style: shape()
 };
 
 Hello.defaultProps = {
