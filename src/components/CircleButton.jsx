@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { string, shape} from 'prop-types';
+import { string, shape } from 'prop-types';
 
 export default function CircleButton(props) {
   const { children, style } = props;
