@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
+  View, ScrollView, Text, StyleSheet,
 } from 'react-native';
 
 import AppBar from '../components/AppBar';
@@ -27,7 +24,7 @@ export default function memoListItemDate() {
           このダミーテキストは自由に改変することができます。主に書籍やウェブページなどのデザインを作成するときによく使われます。書体やレイアウトを確認するために用います。
         </Text>
       </ScrollView>
-      <CircleButton style={{ top: 160, buttom: 'auto' }}>+</CircleButton>
+      <CircleButton style={{ top: 160, buttom: 'auto' }} name="edit-2" />
     </View>
   );
 }
