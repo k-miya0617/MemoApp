@@ -3,13 +3,12 @@ import {
   View, ScrollView, Text, StyleSheet,
 } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 
-export default function memoListItemDate() {
+export default function memoListItemDate(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle}>買い物リスト</Text>
         <Text style={styles.memoDate}>2020年12月24日 10:00</Text>
@@ -24,7 +23,11 @@ export default function memoListItemDate() {
           このダミーテキストは自由に改変することができます。主に書籍やウェブページなどのデザインを作成するときによく使われます。書体やレイアウトを確認するために用います。
         </Text>
       </ScrollView>
-      <CircleButton style={{ top: 160, buttom: 'auto' }} name="edit-2" />
+      <CircleButton
+        style={{ top: 65, buttom: 'auto' }}
+        name="edit-2"
+        onPress={() => { navigation.navigate('MemoEdit'); }}
+      />
     </View>
   );
 }
