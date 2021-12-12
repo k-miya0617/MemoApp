@@ -15,8 +15,6 @@ import { firebaseConfig } from './env';
 
 const Stack = createStackNavigator();
 
-
-
 // もし何も初期化されていなかったら、初期化する
 if (firebase.apps.length === 0) {
   // firebase.initializeApp(firebaseConfig);
