@@ -30,7 +30,7 @@ export default function MemoList() {
         onPress={() => { navigation.navigate('MemoDetail'); }}
       >
         <View>
-          <Text style={styles.memoListItemTitle}>買い物リスト</Text>
+          <Text style={styles.memoListItemTitle}> List</Text>
           <Text style={styles.memoListItemDate}>2020年12月24日 10:00</Text>
         </View>
         <TouchableOpacity
