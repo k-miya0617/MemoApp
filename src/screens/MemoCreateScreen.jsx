@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import {
-  View, TextInput, StyleSheet,
+  View, TextInput, StyleSheet, Alert,
 } from 'react-native';
 
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
+import Loading from '../components/Loading';
 
 export default function MemoCreateScreen(props) {
   const { navigation } = props;
   const [bodyText, setBodyText] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   function handlePress() {
+    setLoading(true);
     const { currentUser } = firebase.auth();
     const db = firebase.firestore();
     const ref = db.collection(`users/${currentUser.uid}/memos`);
@@ -20,17 +23,18 @@ export default function MemoCreateScreen(props) {
       bodyText, // bodyText: bodyText
       updatedAt: new Date(),
     })
-      .then((docRef) => {
-        console.log('Created!', docRef.id);
+      .then(() => {
         navigation.goBack();
       })
       .catch((error) => {
-        console.log('Error', error);
+        setLoading(false);
+        Alert.alert(error.code);
       });
   }
 
   return (
     <KeyboardSafeView style={styles.container}>
+      <Loading isLoading={isLoading} />
       <View style={styles.inputContainer}>
         <TextInput
           value={bodyText}

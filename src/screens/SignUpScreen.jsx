@@ -5,14 +5,16 @@ import {
 import firebase from 'firebase';
 
 import Button from '../components/Button';
-// import { NativeScreenNavigationContainer } from 'react-native-screens';
+import Loading from '../components/Loading';
 
 export default function SignUpScreen(props) {
   const { navigation } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   function handlePress() {
+    setLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const { user } = userCredential;
@@ -23,13 +25,18 @@ export default function SignUpScreen(props) {
         });
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error.code, error.message);
         Alert.alert(error.code); // TODO 適切なメッセージ
+      })
+      .then(() => {
+        setLoading(false);
       });
   }
 
   return (
     <View style={styles.container}>
+      <Loading isLoading={isLoading} />
       <View style={styles.inner}>
         <Text style={styles.title}>Sign Up</Text>
         <TextInput

@@ -7,13 +7,16 @@ import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
+import Loading from '../components/Loading';
 
 export default function MemoEditScreen(props) {
   const { navigation, route } = props;
   const { id, bodyText } = route.params; // 前の画面から渡ってきたbody
   const [body, setBody] = useState(bodyText); // この画面で編集されるbody
+  const [isLoading, setLoading] = useState(false);
 
   function handlePress() {
+    setLoading(true);
     const { currentUser } = firebase.auth();
     if (currentUser) {
       const db = firebase.firestore();
@@ -26,6 +29,7 @@ export default function MemoEditScreen(props) {
           navigation.goBack();
         })
         .catch((error) => {
+          setLoading(false);
           Alert.alert(error.code);
         });
     }
@@ -33,6 +37,7 @@ export default function MemoEditScreen(props) {
 
   return (
     <KeyboardSafeView style={styles.container} behavior="height">
+      <Loading isLoading={isLoading} />
       <View style={styles.inputContainer}>
         <TextInput
           value={body}
