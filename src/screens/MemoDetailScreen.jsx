@@ -47,7 +47,7 @@ export default function MemoDetailScreen(props) {
       <CircleButton
         style={{ top: 65, buttom: 'auto' }}
         name="edit-2"
-        onPress={() => { navigation.navigate('MemoEdit'); }}
+        onPress={() => { navigation.navigate('MemoEdit', { id: memo.id, bodyText: memo.bodyText }); }}
       />
     </View>
   );
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   memoDate: {
     color: '#fff',
-    fontSize: 10,
+    fontSize: 12,
     lineHeight: 16,
   },
   memoBody: {
